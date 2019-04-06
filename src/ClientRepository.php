@@ -113,6 +113,7 @@ class ClientRepository
         $client = Passport::client()->forceFill([
             'user_id' => $userId,
             'name' => $name,
+            'identifier' => Str::random(20),
             'secret' => Str::random(40),
             'redirect' => $redirect,
             'personal_access_client' => $personalAccess,
