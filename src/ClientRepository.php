@@ -7,6 +7,10 @@ use Illuminate\Support\Str;
 
 class ClientRepository
 {
+    protected static function fetchKeyName($id)
+    {
+        return (ctype_digit($id)) ? 'id' : 'identifier';
+    }
     /**
      * Get a client by the given ID.
      *
@@ -17,7 +21,7 @@ class ClientRepository
     {
         $client = Passport::client();
 
-        return $client->where($client->getKeyName(), $id)->first();
+        return $client->where(self::fetchKeyName($id), $id)->first();
     }
 
     /**
@@ -45,7 +49,7 @@ class ClientRepository
         $client = Passport::client();
 
         return $client
-                    ->where($client->getKeyName(), $clientId)
+                    ->where(self::fetchKeyName($clientId), $clientId)
                     ->where('user_id', $userId)
                     ->first();
     }
