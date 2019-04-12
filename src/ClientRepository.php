@@ -9,7 +9,7 @@ class ClientRepository
 {
     protected static function fetchKeyName($id)
     {
-        return (ctype_digit($id)) ? 'id' : 'identifier';
+        return (is_int($id)) ? 'id' : 'identifier';
     }
     /**
      * Get a client by the given ID.
